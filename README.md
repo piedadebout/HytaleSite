@@ -1,105 +1,46 @@
-# HytaleSite — ChronosBR
+# Backend Java (Login/Cadastro) - ChronosBR
 
-Site temático inspirado em **Hytale**, com **frontend (HTML/CSS/JS)** e **backend Java (Spring Boot)** para **login/cadastro**.
+Esse backend expõe endpoints de autenticação em **/api/auth/** e grava usuários em um banco **H2** (arquivo local).
+A sessão é feita via **JWT em cookie HttpOnly** (ou seja: o JS do navegador não consegue ler o token).
 
-> Estrutura do projeto fica dentro da pasta **`ChronosBR/`**.
+## Requisitos
+- Java 17+
+- Maven
 
----
+## Rodar (dev)
+No terminal, dentro da pasta `backend-java`:
 
-## ✅ Status
+```bash
+# (Windows PowerShell)
+$env:JWT_SECRET="coloque-um-segredo-bem-grande-aqui"
+mvn spring-boot:run
 
-![repo](https://img.shields.io/badge/status-em%20desenvolvimento-blue)
-![stack](https://img.shields.io/badge/stack-HTML%2FCSS%2FJS%20%2B%20Java%20(Spring%20Boot)-informational)
-![auth](https://img.shields.io/badge/auth-JWT%20(HttpOnly%20Cookie)-success)
+# (Windows CMD)
+set JWT_SECRET=coloque-um-segredo-bem-grande-aqui
+mvn spring-boot:run
+```
 
----
+Backend sobe em: `http://localhost:8080`
 
-## 🧭 O que tem no repositório
+## Frontend
+O site chama por padrão:
+- `http://localhost:8080/api/auth/*` (se você definir `window.__API_BASE__`)
+- ou `/api/auth/*` (se você hospedar o site junto do backend / reverse proxy)
 
-📁 **`ChronosBR/site-hytale-server/`**  
-Frontend do site (inclui `index.html` e `auth.html`).
+No `index.html`, você pode (opcional) configurar:
 
-📁 **`ChronosBR/backend-java/`**  
-Backend Java (Spring Boot) com endpoints de autenticação + banco H2 local.
+```html
+<script>
+  window.__API_BASE__ = "http://localhost:8080";
+</script>
+```
 
-📄 **`ChronosBR/README_RODAR_LOGIN.md`**  
-Guia rápido para rodar o login no Windows.
+## Endpoints
+- POST `/api/auth/register` { username, email, password }
+- POST `/api/auth/login` { login, password }
+- POST `/api/auth/logout`
+- GET  `/api/auth/me`
 
-📜 Scripts:
-- `ChronosBR/start-backend.bat`
-- `ChronosBR/start-backend.ps1`
-
----
-
-## ✨ Destaques
-
-- Visual e atmosfera “fantasy premium” inspirado em Hytale
-- Tela de autenticação pronta para testes (`auth.html`)
-- Backend com:
-  - cadastro e login
-  - JWT armazenado em **cookie HttpOnly**
-  - banco H2 local (arquivo)
-
----
-
-## 🖼️ Preview
-
-> Coloque prints aqui pra ficar bem “vitrine”.
-> Crie uma pasta `docs/` na raiz e suba as imagens.
-
-Exemplo:
-- `docs/preview-home.png`
-- `docs/preview-auth.png`
-
-Depois descomente:
-
-<!--
-![Home](docs/preview-home.png)
-![Auth](docs/preview-auth.png)
--->
-
----
-
-## ▶️ Rodando rápido (Windows)
-
-1) Suba o backend:
-- vá em `ChronosBR/`
-- execute `start-backend.bat` (ou `start-backend.ps1`)
-
-2) Abra o frontend:
-- `ChronosBR/site-hytale-server/auth.html`
-
-Backend padrão:
-- `http://localhost:8080`
-
-Guia completo:
-- `ChronosBR/README_RODAR_LOGIN.md`
-
----
-
-## 🔗 Estrutura (atalhos)
-
-- Frontend: `ChronosBR/site-hytale-server/`
-- Backend: `ChronosBR/backend-java/`
-
----
-
-## 🗺️ Roadmap (ideias)
-
-- [ ] Melhorar responsividade (mobile)
-- [ ] Animações ao rolar a página
-- [ ] Loja / planos VIP no frontend
-- [ ] Rotas protegidas (painel VIP, histórico, etc.)
-- [ ] Deploy com reverse proxy (Nginx/Apache)
-
----
-
-## 📄 Licença
-
-Para qualquer tipo de uso, favor comunica antes.
-
----
-
-## 👤 Autor
-
-Fabiano — `piedadebout`
+## Observação importante (F12)
+Não dá pra “esconder” HTML/CSS/JS do usuário no navegador: tudo que roda no client pode ser visto.
+O que dá pra proteger é **segredo e regra**: JWT secret, hash de senha, validações e permissões ficam no backend.
