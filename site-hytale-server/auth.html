@@ -8,7 +8,9 @@
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&amp;display=swap" rel="stylesheet" />
-  <link href="./assets/css/style.css" rel="stylesheet" />
+  <link href="./assets/css/auth.css" rel="stylesheet" />
+  
+
 
   <!-- ============================
        CAPTCHA (reCAPTCHA v3 / hCaptcha Invisible)
@@ -71,7 +73,7 @@
             <button class="authTab active" id="tabLogin" type="button">Entrar</button>
             <button class="authTab" id="tabRegister" type="button">Cadastrar</button>
           </div>
-
+          <!-- form Login -->
           <form class="authForm" id="loginForm" autocomplete="on">
 
             <div id="hcLogin" class="captcha-hidden" aria-hidden="true"></div>
@@ -96,7 +98,7 @@
 
             <div class="authMsg" id="authMsg" role="status" aria-live="polite"></div>
           </form>
-
+          <!-- Form Registro -->
           <form class="authForm" id="registerForm" hidden autocomplete="on">
 
             <div id="hcRegister" class="captcha-hidden" aria-hidden="true"></div>
@@ -129,7 +131,9 @@
     </section>
   </main>
 
-  <script src="./assets/js/main.js"></script>
+
+  <script src="./assets/js/auth.js"></script>
+  <script src="./assets/js/FireSpark.js"></script>
 </body>
 
 </html>

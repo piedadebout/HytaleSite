@@ -1,13 +1,13 @@
-package com.CronosBR.Beck_end;
+package com.CronosBR.Back_end;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BeckEndApplication {
+public class BackEndApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BeckEndApplication.class, args);
+		SpringApplication.run(BackEndApplication.class, args);
 	}
 
 }

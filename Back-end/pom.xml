@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.CronosBR</groupId>
-	<artifactId>Beck-end</artifactId>
+	<artifactId>Back-end</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Beck-end</name>
 	<description>Api de integração do site CronosBR servidor de Hytale</description>
@@ -42,7 +42,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-h2console</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
