@@ -1,0 +1,413 @@
+<!doctype html>
+
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <title>ChronosBR | Hytale</title>
+    <link rel="icon" type="image/png" href="./assets/img/crest-letters.png" />
+    <link rel="apple-touch-icon" href="./assets/img/crest-letters.png" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&amp;display=swap" rel="stylesheet" />
+    <link href="./assets/css/index.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="container topbar__inner">
+            <a class="brand" href="#home"><img class="brand__crest" src="assets/img/crest-shield.png"
+                    alt="Brasão ChronosBR" loading="lazy" /><span class="brand__text"
+                    data-text="ChronosBR">ChronosBR</span></a>
+            <nav class="nav" id="nav">
+                <a href="#sobre">Informações</a><a href="#regras">Regras</a><a href="#como-jogar">Como jogar</a><a
+                    href="#staff">Staff</a><a href="./loja.html">Loja</a><a href="#contato">Contato</a>
+            </nav>
+            <div class="authBar">
+                <img class="authCrest" src="assets/img/crest-letters.png" alt="Monograma CB" loading="lazy" />
+                <a class="btn authBtn" href="./auth.html">Entrar</a>
+            </div>
+            <button aria-label="Abrir menu" class="menuBtn" id="menuBtn">☰</button>
+        </div>
+    </header>
+    <main class="site" id="home">
+        <section class="hero">
+            <div class="container hero__inner">
+                <div>
+                    <h1>Bem-vindo ao <span class="accent">ChronosBR</span></h1>
+                    <p>Um mundo de aventuras, economia dinâmica, sistema RPG, progresso constante, clãs e eventos
+                        especiais em um servidor feito para quem quer viver Hytale de verdade. Entre agora e faça parte
+                        da comunidade.
+                    </p>
+                    <div class="hero__actions">
+                        <a class="btn primary" href="https://discord.com/" rel="noreferrer" target="_blank">Entrar no
+                            Discord</a>
+                        <a class="btn ghost" href="./loja.html">Ir para a loja</a>
+                    </div>
+                    <div class="chips">
+                        <span class="chip">✅ Comunidade ativa</span>
+                        <span class="chip">🎯 Eventos semanais</span>
+                        <span class="chip">🛡️ Staff presente</span>
+                    </div>
+                </div>
+                <div class="card statusCard">
+                    <div class="statusHeader">
+                        <h3>Status</h3>
+                        <span class="statusBadge">OFFLINE</span>
+                    </div>
+                    <p class="muted" id="statusText">IP do servidor:</p>
+                    <div class="ipBox">
+                        <code id="serverIp">enx-cirion-64.enx.host:11203</code>
+                        <button class="btn ghost" id="copyIpBtn" type="button">Copiar</button>
+                    </div>
+                    <div class="statusRow">
+                        <span class="dot"></span>
+                        <span>Servidor: <strong>indisponível</strong></span>
+                    </div>
+                    <small class="muted">Quando fizer sentido, a gente troca esse “status” por algo automático.</small>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="sobre">
+            <div class="container">
+                <h2 class="title-fantasy t-emerald">Sobre o ChronosBR</h2>
+                <p class="muted">
+                    O ChronosBR é um servidor criado para jogadores que gostam de viver uma jornada completa dentro do
+                    mundo de Hytale. Aqui você pode evoluir no seu próprio ritmo, fazer novas amizades e participar de
+                    eventos que movimentam toda a comunidade. Nosso servidor conta com um sistema de RPG ativo, onde
+                    você pode evoluir suas habilidades, subir de nível e ganhar experiência através de diversas
+                    atividades dentro do jogo. Todo o sistema de progressão foi cuidadosamente ajustado para
+                    proporcionar uma evolução equilibrada e satisfatória. Também oferecemos proteção de terrenos,
+                    permitindo que cada jogador tenha seu próprio espaço para construir com segurança. Se você gosta de
+                    criar grandes projetos, cidades ou bases gigantes, o ChronosBR é o lugar ideal para transformar suas
+                    ideias em realidade. Além disso, o servidor possui sistema de Party, permitindo a criação de clãs,
+                    guildas ou equipes, incentivando a cooperação entre jogadores e fortalecendo a comunidade dentro do
+                    jogo. Nossa missão é simples: trazer sempre novos conteúdos, manter o servidor ativo e ouvir a
+                    comunidade. Acreditamos que um grande servidor é construído junto com seus jogadores, e cada membro
+                    faz parte dessa jornada de crescimento. Entre no ChronosBR e faça parte dessa aventura.
+                </p>
+                <div class="grid3">
+                    <div class="card">
+                        <h3>Experiência</h3>
+                        <p>Progressão equilibrada, recompensas e conteúdo constante.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Economia</h3>
+                        <p>Mercado entre jogadores, lojas e eventos com premiação.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Eventos</h3>
+                        <p>Campeonatos, raids, corridas e desafios semanais.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="regras">
+            <div class="container">
+                <h2 class="title-fantasy t-copper">Regras</h2>
+
+                <div class="rules-panel">
+                    <div class="rules-grid">
+
+                        <article class="rule-card rule-card--conduct reveal">
+                            <h3 class="rule-title">
+                                <span class="rule-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 3v18" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" />
+                                        <path d="M6 6h12" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" />
+                                        <path d="M7 6l-4 7a5 5 0 0 0 10 0L7 6Z" stroke="currentColor" stroke-width="2"
+                                            stroke-linejoin="round" />
+                                        <path d="M17 6l-4 7a5 5 0 0 0 10 0l-6-7Z" stroke="currentColor" stroke-width="2"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                Conduta e Comunidade
+                            </h3>
+                            <ul class="rule-list">
+                                <li>Respeito em primeiro lugar: trate todos os jogadores com educação. Ofensas,
+                                    xingamentos ou
+                                    comportamento tóxico não serão tolerados.</li>
+
+                                <li>É proibido qualquer tipo de discriminação, assédio ou discurso de ódio (racismo,
+                                    homofobia,
+                                    xenofobia, etc.). Esse tipo de comportamento pode resultar em banimento imediato.
+                                </li>
+
+                                <li>Discussões devem ser mantidas em um nível saudável. Evite brigas, provocações ou
+                                    gerar
+                                    conflitos desnecessários.</li>
+
+                                <li>Não tente enganar ou aplicar golpes em outros jogadores dentro do servidor.</li>
+
+                                <li>Spam, flood ou divulgação de outros servidores, links ou redes sociais sem
+                                    autorização da
+                                    staff não são permitidos.</li>
+
+                                <li>Não compartilhe informações pessoais suas ou de outros jogadores dentro do servidor.
+                                </li>
+
+                                <li>É proibido prejudicar propositalmente a experiência de jogo de outros jogadores.
+                                </li>
+                            </ul>
+                        </article>
+
+                        <article class="rule-card rule-card--build reveal">
+                            <h3 class="rule-title">
+                                <span class="rule-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-8.5Z"
+                                            stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                                        <path d="M9 10h6" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                </span>
+                                Construções e Terrenos
+                            </h3>
+                            <ul class="rule-list">
+                                <li>Construções ofensivas, inadequadas ou que desrespeitem outros jogadores não são
+                                    permitidas.
+                                </li>
+
+                                <li>Terrenos protegidos são de responsabilidade do proprietário. Tenha cuidado ao
+                                    conceder
+                                    acesso a outros jogadores. Caso alguém autorizado destrua construções, roube itens
+                                    ou cause
+                                    qualquer tipo de dano dentro do terreno, a equipe do servidor não se responsabiliza
+                                    por
+                                    perdas ou prejuízos.</li>
+                            </ul>
+                        </article>
+
+                        <article class="rule-card rule-card--system reveal">
+                            <h3 class="rule-title">
+                                <span class="rule-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2l7 4v6c0 6-3.5 9.5-7 10-3.5-.5-7-4-7-10V6l7-4Z"
+                                            stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                                        <path d="M9 12l2 2 4-5" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                Sistema e Administração
+                            </h3>
+                            <ul class="rule-list">
+                                <li>Não utilize trapaças, hacks, clientes modificados ilegais, exploits ou qualquer
+                                    recurso que
+                                    ofereça vantagem injusta.</li>
+
+                                <li>Uso de múltiplas contas para obter vantagens indevidas pode resultar em punição.
+                                </li>
+
+                                <li>É proibido criar nomes de jogadores ou clãs ofensivos, impróprios ou que imitem
+                                    membros da
+                                    staff.</li>
+
+                                <li>Não finja ser membro da staff ou utilize informações falsas para enganar outros
+                                    jogadores.
+                                </li>
+
+                                <li>Eventos organizados pela staff devem ser respeitados. Qualquer tentativa de
+                                    atrapalhar
+                                    eventos poderá resultar em punição.</li>
+
+                                <li>As decisões da staff devem ser respeitadas. Caso discorde de alguma punição, utilize
+                                    os
+                                    meios oficiais para recorrer.</li>
+
+                                <li>As regras podem ser atualizadas a qualquer momento para manter o servidor organizado
+                                    e justo
+                                    para todos.</li>
+                            </ul>
+                        </article>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="como-jogar">
+            <div class="container">
+                <h2 class="title-fantasy t-ice">Como jogar</h2>
+                <div class="grid2">
+                    <div class="card">
+                        <h3>1) Copie o IP</h3>
+                        <p>Clique em <strong>Copiar</strong> no card do IP ali em cima.</p>
+                    </div>
+                    <div class="card">
+                        <h3>2) Entre no Discord</h3>
+                        <p>Fique por dentro de avisos, eventos e suporte.</p>
+                    </div>
+                    <div class="card">
+                        <h3>3) Abra o Hytale</h3>
+                        <p>Assim que o jogo/servidor estiver disponível, você entra com a mesma ideia de “adicionar
+                            servidor”.</p>
+                    </div>
+                    <div class="card">
+                        <h3>4) Comece sua jornada</h3>
+                        <p>Explore, participe dos eventos e evolua com a galera.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="staff">
+            <div class="container">
+                <h2 class="title-fantasy t-gold">Staff</h2>
+                <div class="grid3">
+                    <div class="card staff">
+                        <div class="avatar">CEO</div>
+                        <div>
+                            <h3>Tiofabii</h3>
+                            <p class="muted">Fundador</p>
+                        </div>
+                    </div>
+                    <div class="card staff">
+                        <div class="avatar">A</div>
+                        <div>
+                            <h3>Admin 1</h3>
+                            <p class="muted">Admin</p>
+                        </div>
+                    </div>
+                    <div class="card staff">
+                        <div class="avatar">M</div>
+                        <div>
+                            <h3>Mod 1</h3>
+                            <p class="muted">Moderador</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contato">
+            <div class="container">
+                <h2 class="title-fantasy t-amethyst">Contato</h2>
+                <div class="grid2">
+                    <form class="card" id="contactForm">
+                        <label>
+                            Seu nome
+                            <input name="name" placeholder="Seu nome" required="" />
+                        </label>
+                        <label>
+                            Mensagem
+                            <textarea name="msg" placeholder="Escreva sua mensagem..." required="" rows="5"></textarea>
+                        </label>
+                        <button class="btn primary" type="submit">Enviar</button>
+                        <p class="muted" id="formMsg"></p>
+                        <small class="muted">Obs: por enquanto o envio é simulação (não manda e-mail de
+                            verdade).</small>
+
+                    </form>
+                    <div class="card">
+                        <h3>Conecte-se</h3>
+                        <div class="social-links" aria-label="Links de contato">
+                            <a class="social-link disabled" href="#" aria-disabled="true"
+                                title="Discord: convite em breve">
+                                <span class="social-icon" aria-hidden="true">
+                                    <!-- Discord (SVG) -->
+                                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.2 8.4c1.1-.8 2.4-1.2 3.8-1.2s2.7.4 3.8 1.2" stroke="currentColor"
+                                            stroke-width="1.8" stroke-linecap="round" />
+                                        <path d="M8.3 15.6c1.1.8 2.3 1.2 3.7 1.2s2.6-.4 3.7-1.2" stroke="currentColor"
+                                            stroke-width="1.8" stroke-linecap="round" />
+                                        <path d="M9.2 12.2h.01" stroke="currentColor" stroke-width="3.2"
+                                            stroke-linecap="round" />
+                                        <path d="M14.8 12.2h.01" stroke="currentColor" stroke-width="3.2"
+                                            stroke-linecap="round" />
+                                        <path
+                                            d="M6.2 6.8c1.9-1.4 3.9-2.1 5.8-2.1s3.9.7 5.8 2.1c.9 2 1.4 4.2 1.4 6.4 0 2.1-.4 3.8-1.2 5.1-1.9 1.4-3.9 2.1-6 2.1s-4.1-.7-6-2.1c-.8-1.3-1.2-3-1.2-5.1 0-2.2.5-4.4 1.4-6.4Z"
+                                            stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                <span class="social-label">Discord</span>
+                                <span class="social-sub">em breve</span>
+                            </a>
+
+                            <a class="social-link" href="mailto:fpiedadecont@outlook.com?subject=Contato%20ChronosBR"
+                                title="Enviar e-mail">
+                                <span class="social-icon" aria-hidden="true">
+                                    <!-- Outlook / Email (SVG) -->
+                                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 7.5h15v10a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2v-10Z"
+                                            stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                                        <path d="M4.8 8.1 12 13.2l7.2-5.1" stroke="currentColor" stroke-width="1.6"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                <span class="social-label">Outlook</span>
+                                <span class="social-sub">enviar e-mail</span>
+                            </a>
+                        </div>
+                        <small class="muted">Assim que você tiver o link do convite do Discord, eu ativo aqui.</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer__goldline" aria-hidden="true"></div>
+
+        <div class="container footer__grid">
+            <div class="footer__col">
+                <div class="footer__brand">
+                    <span class="footer__copy">© <span id="year"></span> ChronosBR — Todos os direitos
+                        reservados.</span>
+                    <img class="footer__crest" src="assets/img/crest-shield.png" alt="Brasão ChronosBR"
+                        loading="lazy" />
+                    <span class="footer__name">ChronosBR</span>
+                    <img class="footer__hytale" src="assets/img/hytale-badge.png" alt="Hytale" loading="lazy">
+                </div>
+
+                <div class="footer__actions" aria-label="Atalhos">
+                    <a class="footer__icon footer__icon--disabled" href="#" aria-label="Discord (em breve)"
+                        title="Discord (em breve)" role="link" aria-disabled="true">
+                        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+                            <path d="M7.5 10.2c.7-1.4 2.2-2.3 4.5-2.3s3.8.9 4.5 2.3" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" />
+                            <path d="M8.2 15.2c1 .9 2.4 1.4 3.8 1.4s2.8-.5 3.8-1.4" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" />
+                            <path
+                                d="M4.8 9.6c.7-2.7 3.7-4.6 7.2-4.6s6.5 1.9 7.2 4.6c.5 1.9.3 4.4-.7 6.1-1.3 2.2-3.7 3.3-6.5 3.3s-5.2-1.1-6.5-3.3c-1-1.7-1.2-4.2-.7-6.1Z"
+                                fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                            <circle cx="9.4" cy="12.2" r="1" fill="currentColor" />
+                            <circle cx="14.6" cy="12.2" r="1" fill="currentColor" />
+                        </svg>
+                    </a>
+
+                    <a class="footer__icon" href="mailto:fpiedadecont@outlook.com?subject=Contato%20-%20ChronosBR"
+                        aria-label="Enviar e-mail" title="Enviar e-mail">
+                        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+                            <path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linejoin="round" />
+                            <path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+
+                    <span class="footer__hint">Discord: em breve • E-mail: fpiedadecont@outlook.com</span>
+                </div>
+            </div>
+
+            <div class="footer__col footer__col--right">
+                <a class="footer__top" href="#home" aria-label="Voltar ao topo">
+                    <span>Voltar ao topo</span>
+                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                        <path d="M12 6l-6 6M12 6l6 6" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./assets/js/FireSpark.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width,initial-scale=1" name="viewport" />
+  <title>Conta ChronosBR</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&amp;display=swap" rel="stylesheet" />
+  <link href="./assets/css/auth.css" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="./assets/img/crest-letters.png" />
+  <link rel="apple-touch-icon" href="./assets/img/crest-letters.png" />
+  
+
+
+  <!-- ============================
+       CAPTCHA (reCAPTCHA v3 / hCaptcha Invisible)
+       Configure as chaves aqui:
+       - provider: "recaptcha" ou "hcaptcha"
+       - recaptcha.mode: "v3" (recomendado) ou "v2_invisible"
+  ============================= -->
+  <script>
+    window.__CAPTCHA__ = {
+      enabled: true,
+      provider: "recaptcha",
+      recaptcha: {
+        mode: "v3",
+        siteKey: "6Ldb834sAAAAAMa2X3TmqUU3501NIfg-lvS5uxFA",
+        minScore: 0.5
+      },
+      hcaptcha: {
+        siteKey: "COLOQUE_SUA_SITE_KEY_HCAPTCHA_AQUI"
+      }
+    };
+
+    // onload do hCaptcha (render=explicit)
+    function onHCaptchaLoad() {
+      if (window.initHCaptcha) window.initHCaptcha();
+    }
+  </script>
+
+  <!-- reCAPTCHA (v3 ou Invisible v2) -->
+  <script id="recaptchaScript" src="https://www.google.com/recaptcha/api.js?render=COLOQUE_SUA_SITE_KEY_RECAPTCHA_AQUI"
+    async defer></script>
+
+  <!-- hCaptcha (Invisible / explicit render) -->
+  <script id="hcaptchaScript" src="https://js.hcaptcha.com/1/api.js?onload=onHCaptchaLoad&render=explicit" async
+    defer></script>
+
+</head>
+
+<body class="authPage">
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="./index.html">
+        <img class="brand__crest" src="assets/img/crest-shield.png" alt="Brasão ChronosBR" loading="lazy" />
+        <span class="brand__text" data-text="ChronosBR">ChronosBR</span>
+      </a>
+
+      <div class="authBar">
+        <a class="btn-back-hytale" href="./index.html">Voltar ao site</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="site">
+    <section class="section">
+      <div class="container authWrap">
+        <div class="card authCard authPanelPremium">
+          <h2 class="card__title authTitle">Conta ChronosBR</h2>
+          <p class="authSub">Entre para acessar o painel exclusivo.</p>
+
+          <div class="authTabs">
+            <button class="authTab active" id="tabLogin" type="button">Entrar</button>
+            <button class="authTab" id="tabRegister" type="button">Cadastrar</button>
+          </div>
+          <!-- form Login -->
+          <form class="authForm" id="loginForm" autocomplete="on">
+
+            <div id="hcLogin" class="captcha-hidden" aria-hidden="true"></div>
+            <label>
+              Usuário ou e-mail
+              <input name="login" placeholder="ex: Tiofabii" required />
+            </label>
+
+            <label>
+              Senha
+              <input name="password" type="password" placeholder="••••••••" required />
+            </label>
+
+            <div class="captcha-box authCaptchaBox">
+              <label id="loginCaptchaQuestion">Verificação: quanto é 6 + 10 ?</label>
+              <input type="number" id="loginCaptchaInput" placeholder="Resposta" inputmode="numeric" required>
+            </div>
+
+            <button class="btn primary" type="submit">Entrar</button>
+
+            <div class="authActions">
+              <a class="btn runeGoogle" id="googleBtn" href="#">
+                <span class="googleIcon" aria-hidden="true">G</span>
+                Continuar com Google
+              </a>
+            </div>
+
+            <div class="authMsg" id="authMsg" role="status" aria-live="polite"></div>
+          </form>
+          <!-- Form Registro -->
+          <form class="authForm" id="registerForm" hidden autocomplete="on">
+
+            <div id="hcRegister" class="captcha-hidden" aria-hidden="true"></div>
+            <label>
+              Nick do Hytale
+              <input name="username" placeholder="ex: Tiofabii" required />
+              <span class="muted" style="font-size:12px;">3–16 caracteres: letras, números ou “_”</span>
+            </label>
+
+            <label>
+              E-mail
+              <input name="email" type="email" placeholder="ex: voce@email.com" required />
+            </label>
+
+            <label>
+              Senha
+              <input name="password" type="password" placeholder="••••••••" required />
+            </label>
+
+            <div class="captcha-box authCaptchaBox">
+              <label id="registerCaptchaQuestion">Verificação: quanto é 6 + 10 ?</label>
+              <input type="number" id="registerCaptchaInput" placeholder="Resposta" inputmode="numeric" required>
+            </div>
+
+            <button class="btn primary" type="submit">Criar conta</button>
+
+
+          </form>
+
+          <p class="muted" style="margin:14px 0 0; font-size:13px;">
+            Dica: depois dá pra trocar textos/benefícios do painel sem mexer no login.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <script src="./assets/js/auth.js"></script>
+  <script src="./assets/js/FireSpark.js"></script>
+</body>
+
+</html>
