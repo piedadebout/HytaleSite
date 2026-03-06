@@ -1,16 +1,24 @@
 package com.CronosBR.Back_end.model;
 
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-
+@Table
+@Entity
 public class User {
 
-
+    @Id
+    @Column
     private String Id;
+    @Column
     private String Usuario;
+    @Column
     private String Email;
+    @Column
     private String Password;
-
     public String getId() {
         return Id;
     }

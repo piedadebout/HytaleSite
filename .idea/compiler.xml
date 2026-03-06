@@ -6,7 +6,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="chronosbr-auth" />
       </profile>
       <profile name="Annotation profile for Beck-end" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -18,6 +17,9 @@
         <module name="Back-end" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="chronosbr-auth" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
