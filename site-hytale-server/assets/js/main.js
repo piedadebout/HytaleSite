@@ -14,6 +14,7 @@ if (year) year.textContent = new Date().getFullYear();
 if (menuBtn && nav) {
     menuBtn.addEventListener("click", () => {
         nav.classList.toggle("open");
+
     });
 
     document.querySelectorAll("#nav a").forEach((a) => {
