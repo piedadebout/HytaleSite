@@ -170,29 +170,35 @@
         loginForm.addEventListener("submit", async (e) => {
             e.preventDefault();
             const fd = new FormData(loginForm);
-            const login = String(fd.get("login") || "").trim();
-            const password = String(fd.get("password") || "");
+            const auth = {
+                Usuario: fd.get("login"),
+                Password: fd.get("password"),
+            }
 
-            if (!login || !password) {
-                setMsg("Preenche usuário/e-mail e senha.");
+            if (!auth.Usuario || !auth.Password) {
+                setMsg("Preenche usuário e senha.");
                 return;
             }
 
             try {
                 setMsg("Entrando...", true);
-                const cap = await getCaptchaToken("login");
-                await api("/api/auth/login", {
+                console.log(auth)
+                const res = await fetch("http://localhost:8080/auth/signIn", {
                     method: "POST",
-                    body: JSON.stringify({
-                        ...{ login, password },
-                        captchaToken: cap.token,
-                        captchaProvider: cap.provider,
-                        captchaAction: cap.action,
-                    }),
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(auth),
                 });
 
-                // volta pro site e abre o painel (se existir)
-                window.location.href = "./index.html#painel";
+                // tenta ler resposta (pode ser json ou texto)
+                const text = await res.text();
+                const data = text ? (() => { try { return JSON.parse(text); } catch { return text; } })() : null;
+
+                if (!res.ok) {
+                    throw new Error(typeof data === "string" ? data : (data?.message ?? `Erro ${res.status}`));
+                }
+
+                console.log("OK:", data);
+                // window.location.href = "./index.html#painel";
             } catch (err) {
                 setMsg(err?.message || "Falha no login.");
             }
@@ -205,22 +211,22 @@
             const fd = new FormData(registerForm);
 
             const user ={
-                Username: fd.get("username"),
+                Usuario: fd.get("username"),
                 Email: fd.get("email"),
                 Password: fd.get("password"),
             }
             console.log(user);
-            if (!user.Username || !user.Email || !user.Password) {
+            if (!user.Usuario || !user.Email || !user.Password) {
                 setMsg("Preenche nick do Hytale, e-mail e senha.");
                 return;
             }
-            if (!isNickValid(user.Username)) {
+            if (!isNickValid(user.Usuario)) {
                 setMsg("Nick inválido. Use 3-16 caracteres: letras, números ou _");
                 return;
             }
 
             try {
-                setMsg("Criando conta...", true);
+               console.log("pass")
 
                 const res = await fetch("http://localhost:8080/auth/SignUp", {
                     method: "POST",

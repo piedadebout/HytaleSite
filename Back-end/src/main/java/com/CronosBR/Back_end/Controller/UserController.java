@@ -12,10 +12,12 @@ public class UserController {
 
     private UserRepository userRepository;
 
-
+    public UserController(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
 
     public ResponseEntity<User> Getuser(String Id){
-
+        userRepository.findById(Id);
 
         return null;
     }
