@@ -1,3 +1,29 @@
+server:
+  port: 8080
 spring:
   application:
     name: Beck-end
+  datasource:
+
+    url: jdbc:mysql://localhost:3306/CronosDatabase?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Sao_Paulo
+    username: CronosAdmin
+    password: calistoProtocol
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+    jackson:
+      serialization:
+        indent-output: true
+
+  logging:
+    level:
+      org.hibernate.SQL: debug
+      org.hibernate.type.descriptor.sql: trace

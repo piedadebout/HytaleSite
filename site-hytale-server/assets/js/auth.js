@@ -14,8 +14,6 @@
     // se não estiver na auth.html, sai
     if (!loginForm && !registerForm) return;
 
-    const API_BASE = (window.__API_BASE__ ?? "").toString().replace(/\/$/, "");
-
     const setMsg = (txt, ok = false) => {
         if (!authMsg) return;
         authMsg.textContent = txt || "";
@@ -29,27 +27,6 @@
         if (loginForm) loginForm.hidden = !isLogin;
         if (registerForm) registerForm.hidden = isLogin;
         setMsg("");
-    };
-
-    const api = async (path, options = {}) => {
-        const url = `${API_BASE}${path}`;
-        const res = await fetch(url, {
-            ...options,
-            headers: {
-                "Content-Type": "application/json",
-                ...(options.headers || {}),
-            },
-            credentials: "include",
-        });
-
-        const ct = res.headers.get("content-type") || "";
-        const data = ct.includes("application/json") ? await res.json().catch(() => ({})) : await res.text();
-
-        if (!res.ok) {
-            const msg = (data && data.message) ? data.message : (typeof data === "string" ? data : "Erro na requisição");
-            throw new Error(msg);
-        }
-        return data;
     };
 
     const isNickValid = (nick) => /^[A-Za-z0-9_]{3,16}$/.test(nick);
@@ -182,7 +159,7 @@
         throw new Error("Captcha provider inválido.");
     };
 
-
+// Tabs de login
     if (tabLogin) tabLogin.addEventListener("click", () => setTab("login"));
     if (tabRegister) tabRegister.addEventListener("click", () => setTab("register"));
 
@@ -193,29 +170,35 @@
         loginForm.addEventListener("submit", async (e) => {
             e.preventDefault();
             const fd = new FormData(loginForm);
-            const login = String(fd.get("login") || "").trim();
-            const password = String(fd.get("password") || "");
+            const auth = {
+                Usuario: fd.get("login"),
+                Password: fd.get("password"),
+            }
 
-            if (!login || !password) {
-                setMsg("Preenche usuário/e-mail e senha.");
+            if (!auth.Usuario || !auth.Password) {
+                setMsg("Preenche usuário e senha.");
                 return;
             }
 
             try {
                 setMsg("Entrando...", true);
-                const cap = await getCaptchaToken("login");
-                await api("/api/auth/login", {
+                console.log(auth)
+                const res = await fetch("http://localhost:8080/auth/signIn", {
                     method: "POST",
-                    body: JSON.stringify({
-                        ...{ login, password },
-                        captchaToken: cap.token,
-                        captchaProvider: cap.provider,
-                        captchaAction: cap.action,
-                    }),
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(auth),
                 });
 
-                // volta pro site e abre o painel (se existir)
-                window.location.href = "./index.html#painel";
+                // tenta ler resposta (pode ser json ou texto)
+                const text = await res.text();
+                const data = text ? (() => { try { return JSON.parse(text); } catch { return text; } })() : null;
+
+                if (!res.ok) {
+                    throw new Error(typeof data === "string" ? data : (data?.message ?? `Erro ${res.status}`));
+                }
+
+                console.log("OK:", data);
+                // window.location.href = "./index.html#painel";
             } catch (err) {
                 setMsg(err?.message || "Falha no login.");
             }
@@ -226,41 +209,43 @@
         registerForm.addEventListener("submit", async (e) => {
             e.preventDefault();
             const fd = new FormData(registerForm);
-            const username = String(fd.get("username") || "").trim(); // nick do Hytale
-            const email = String(fd.get("email") || "").trim();
-            const password = String(fd.get("password") || "");
 
-            if (!username || !email || !password) {
+            const user ={
+                Usuario: fd.get("username"),
+                Email: fd.get("email"),
+                Password: fd.get("password"),
+            }
+            console.log(user);
+            if (!user.Usuario || !user.Email || !user.Password) {
                 setMsg("Preenche nick do Hytale, e-mail e senha.");
                 return;
             }
-
-            if (!isNickValid(username)) {
+            if (!isNickValid(user.Usuario)) {
                 setMsg("Nick inválido. Use 3-16 caracteres: letras, números ou _");
                 return;
             }
 
             try {
-                setMsg("Criando conta...", true);
-                // const cap = await getCaptchaToken("register");
-                await fetch("http://localhost:8080/auth/register", {
+               console.log("pass")
+
+                const res = await fetch("http://localhost:8080/auth/SignUp", {
                     method: "POST",
-                    body: JSON.stringify({
-                        ...{ username, email, password },
-                        captchaToken: cap.token,
-                        captchaProvider: cap.provider,
-                        captchaAction: cap.action,
-                    }),
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(user),
                 });
 
-                // login automático
-                await api("/api/auth/login", {
-                    method: "POST",
-                    body: JSON.stringify({ login: email, password }),
-                });
+                // tenta ler resposta (pode ser json ou texto)
+                const text = await res.text();
+                const data = text ? (() => { try { return JSON.parse(text); } catch { return text; } })() : null;
 
+                if (!res.ok) {
+                    throw new Error(typeof data === "string" ? data : (data?.message ?? `Erro ${res.status}`));
+                }
+
+                console.log("OK:", data);
                 window.location.href = "./index.html#painel";
             } catch (err) {
+                console.error(err);
                 setMsg(err?.message || "Falha ao cadastrar.");
             }
         });
